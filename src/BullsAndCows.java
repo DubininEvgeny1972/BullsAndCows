@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
@@ -19,7 +18,7 @@ public class BullsAndCows {
                         numBulls ++;
                         if (numBulls == 4) {
                             System.out.println("Вы победили!");
-                            System.out.println("Еще играть будем?");
+                            System.out.println("Еще играть будем? (Y/N)");
                             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                             String equestion = reader.readLine();
                             boolean vopr = true;
@@ -60,8 +59,13 @@ public class BullsAndCows {
             while (!isWin){
                 System.out.print("Попытка № " + numStep + ". Введите  число: ");
                 String step = reader.readLine();
-                numStep ++;
-                isWin = stepBool(step, arrayList);
+                try{
+                    int isNum = Integer.parseInt(step);
+                    numStep ++;
+                    isWin = stepBool(step, arrayList);
+                }catch (Exception e){
+                    System.out.println("Вы ввели не число, введите число");
+                }
             }
         }
 }
